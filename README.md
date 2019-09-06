@@ -36,3 +36,20 @@
 4. 모델 생성
 
         # sequelize model:create --name post --attributes "title:string, writer:string"
+        
+5. /models/post.js 수정
+
+        'use strict';
+        module.exports = (sequelize, DataTypes) => {
+          var post = sequelize.define('post', {
+            title: {
+              type: DataTypes.STRING,
+              allowNull: false,
+            },
+            writer: {
+              type: DataTypes.STRING,
+              allowNull: false,
+            }
+          });
+          return post;
+        };
