@@ -53,3 +53,48 @@
           });
           return post;
         };
+
+6. /migrations/20190720033800-create-post.js 수정
+
+        'use strict';
+        module.exports = {
+          up: (queryInterface, Sequelize) => {
+            return queryInterface.createTable('posts', {
+              id: {
+                allowNull: false,
+                autoIncrement: true,
+                primaryKey: true,
+                type: Sequelize.INTEGER
+              },
+              title: {
+                type: Sequelize.STRING,
+                allowNull: false,
+              },
+              writer: {
+                type: Sequelize.STRING,
+                allowNull: false,
+              },
+              createdAt: {
+                allowNull: false,
+                type: Sequelize.DATE
+              },
+              updatedAt: {
+                allowNull: false,
+                type: Sequelize.DATE
+              }
+            });
+          },
+          down: (queryInterface, Sequelize) => {
+            return queryInterface.dropTable('posts');
+          }
+        };
+        
+7. 변경 반영
+
+        sequelize db:migrate
+
+        npm start
+        
+8. 테이블 확인
+        
+        desc posts;
